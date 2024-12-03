@@ -1,0 +1,15 @@
+version: 1
+plugins:
+  - name: foo
+    output: true
+    maintainer: khulnasoft
+    summary: A foo plugin
+    repository: go.khulnasoft.com/tunnel-plugin-foo
+  - name: bar
+    maintainer: khulnasoft
+    summary: A bar plugin
+    repository: go.khulnasoft.com/tunnel-plugin-bar
+  - name: test_plugin
+    maintainer: khulnasoft
+    summary: A test plugin
+    repository: testdata/test_plugin

@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "packages": [
+    {
+      "ID": "pkg:golang/go.khulnasoft.com/tunnel",
+      "Location": "test"
+    }
+  ]
+}

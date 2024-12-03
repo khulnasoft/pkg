@@ -1,0 +1,13 @@
+package config
+
+import (
+	"go.khulnasoft.com/pkg/iac/providers/aws/config"
+	"go.khulnasoft.com/pkg/iac/scanners/cloudformation/parser"
+)
+
+// Adapt adapts a configurationaggregator instance
+func Adapt(cfFile parser.FileContext) config.Config {
+	return config.Config{
+		ConfigurationAggregrator: getConfigurationAggregator(cfFile),
+	}
+}
