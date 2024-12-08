@@ -1,0 +1,55 @@
+name: Find Golang Repositories
+
+on:
+  workflow_dispatch: # Trigger manually
+
+jobs:
+  find-golang-repos:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout pkg repository
+      uses: actions/checkout@v3
+
+    - name: Install Dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y jq git
+
+    - name: Fetch Repositories
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        ORG_NAME: khulnasoft # Replace with your organization name
+      run: |
+        # Fetch all repositories in the organization
+        curl -H "Authorization: token $GH_TOKEN" \
+             -s "https://api.github.com/orgs/$ORG_NAME/repos?per_page=100" \
+             | jq -r '.[] | .clone_url' > repos.txt
+
+    - name: Filter Golang Repositories
+      run: |
+        mkdir temp_clones
+        touch go_repos.txt
+        while IFS= read -r repo; do
+          git clone --depth 1 "$repo" temp_clones/repo_temp || continue
+          if [ -f "temp_clones/repo_temp/go.mod" ]; then
+            echo "$repo" >> go_repos.txt
+          fi
+          rm -rf temp_clones/repo_temp
+        done < repos.txt
+
+    - name: Clone and Merge Golang Repositories
+      run: |
+        mkdir -p packages
+        while IFS= read -r repo; do
+          repo_name=$(basename "$repo" .git)
+          git clone --depth 1 "$repo" "packages/$repo_name" || continue
+        done < go_repos.txt
+
+    - name: Commit Changes
+      run: |
+        git config user.name "github-actions"
+        git config user.email "github-actions@github.com"
+        git add packages
+        git commit -m "Added Golang repositories"
+        git push origin main
