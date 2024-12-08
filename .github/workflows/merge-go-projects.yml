@@ -1,0 +1,50 @@
+name: Merge Go Projects
+
+on:
+  workflow_dispatch: # Trigger manually
+
+jobs:
+  merge-go-projects:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout pkg repository
+      uses: actions/checkout@v3
+
+    - name: Install Dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y jq git
+
+    - name: Fetch All Repositories
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        ORG_NAME: khulnasoft # Replace with your GitHub organization name
+      run: |
+        # Fetch all repositories in the organization
+        curl -H "Authorization: token $GH_TOKEN" \
+             -s "https://api.github.com/orgs/$ORG_NAME/repos?per_page=100" \
+             | jq -r '.[] | .clone_url' > repos.txt
+
+    - name: Filter and Merge Go Projects
+      run: |
+        mkdir temp_clones
+        mkdir -p pkg
+        while IFS= read -r repo; do
+          repo_name=$(basename "$repo" .git)
+          git clone --depth 1 "$repo" temp_clones/$repo_name || continue
+          if [ -f "temp_clones/$repo_name/go.mod" ]; then
+            # Move the repository contents into the pkg directory
+            mkdir -p pkg/$repo_name
+            mv temp_clones/$repo_name/* pkg/$repo_name/
+          fi
+          rm -rf temp_clones/$repo_name
+        done < repos.txt
+
+    - name: Commit Changes to pkg Repository
+      run: |
+        git config user.name "github-actions"
+        git config user.email "github-actions@github.com"
+        git add pkg
+        git commit -m "Merged Go projects into pkg directory"
+        git push origin main
