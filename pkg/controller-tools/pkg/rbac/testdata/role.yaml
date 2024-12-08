@@ -1,0 +1,151 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: manager-role
+rules:
+- nonResourceURLs:
+  - /another/url-to-duplicate
+  - /url-to-duplicate
+  verbs:
+  - get
+- apiGroups:
+  - ""
+  resources:
+  - deduplicate
+  - me
+  verbs:
+  - list
+- apiGroups:
+  - ""
+  - some-other-to-deduplicate-with-core
+  resources:
+  - me
+  verbs:
+  - get
+  - list
+- apiGroups:
+  - art
+  resources:
+  - jobs
+  verbs:
+  - get
+- apiGroups:
+  - batch
+  resources:
+  - jobs/status
+  verbs:
+  - watch
+- apiGroups:
+  - batch
+  - cron
+  resources:
+  - jobs/status
+  verbs:
+  - create
+  - get
+- apiGroups:
+  - batch.io
+  resources:
+  - cronjobs
+  verbs:
+  - create
+  - get
+  - watch
+- apiGroups:
+  - batch.io
+  resourceNames:
+  - bar
+  - baz
+  - foo
+  resources:
+  - cronjobs
+  verbs:
+  - get
+  - watch
+- apiGroups:
+  - batch.io
+  resources:
+  - cronjobs/status
+  verbs:
+  - get
+  - patch
+  - update
+- apiGroups:
+  - deduplicate-all
+  - deduplicate-all-group
+  resources:
+  - bar
+  - foo
+  verbs:
+  - get
+  - list
+- apiGroups:
+  - deduplicate-groups1
+  - deduplicate-groups2
+  - deduplicate-groups3
+  resources:
+  - foo
+  verbs:
+  - patch
+- apiGroups:
+  - deduplicate-resources
+  resources:
+  - one
+  - three
+  - two
+  verbs:
+  - create
+- apiGroups:
+  - deduplicate-verbs
+  resources:
+  - some
+  verbs:
+  - get
+  - list
+- apiGroups:
+  - not-deduplicate-groups1
+  - not-deduplicate-resources
+  resources:
+  - some
+  verbs:
+  - get
+- apiGroups:
+  - not-deduplicate-groups2
+  resources:
+  - some
+  verbs:
+  - list
+- apiGroups:
+  - not-deduplicate-resources
+  resources:
+  - another
+  verbs:
+  - list
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: manager-role
+  namespace: park
+rules:
+- apiGroups:
+  - art
+  resources:
+  - jobs
+  verbs:
+  - get
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: manager-role
+  namespace: zoo
+rules:
+- apiGroups:
+  - art
+  - wave
+  resources:
+  - jobs
+  verbs:
+  - get

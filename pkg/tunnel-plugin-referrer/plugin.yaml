@@ -1,0 +1,28 @@
+name: "referrer"
+repository: github.com/khulnasoft/tunnel-plugin-referrer
+version: "0.3.0"
+usage: Put referrers to OCI registry
+description: |-
+  A Tunnel plugin for OCI referrers
+  Usage: tunnel image -q -f cyclonedx IMAGE_NAME | tunnel referrer put
+platforms:
+  - selector:
+      os: darwin
+      arch: amd64
+    uri: https://github.com/khulnasoft/tunnel-plugin-referrer/releases/download/v0.3.0/tunnel_plugin_referrer_0.3.0_macOS-64bit.tar.gz
+    bin: ./referrer
+  - selector:
+      os: darwin
+      arch: arm64
+    uri: https://github.com/khulnasoft/tunnel-plugin-referrer/releases/download/v0.3.0/tunnel_plugin_referrer_0.3.0_macOS-ARM64.tar.gz
+    bin: ./referrer
+  - selector:
+      os: linux
+      arch: amd64
+    uri: https://github.com/khulnasoft/tunnel-plugin-referrer/releases/download/v0.3.0/tunnel_plugin_referrer_0.3.0_Linux-64bit.tar.gz
+    bin: ./referrer
+  - selector:
+      os: linux
+      arch: arm64
+    uri: https://github.com/khulnasoft/tunnel-plugin-referrer/releases/download/v0.3.0/tunnel_plugin_referrer_0.3.0_Linux-ARM64.tar.gz
+    bin: ./referrer

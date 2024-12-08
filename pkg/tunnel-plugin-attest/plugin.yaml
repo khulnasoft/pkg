@@ -1,0 +1,28 @@
+name: "attest"
+repository: github.com/khulnasoft/tunnel-plugin-attest
+version: "0.1.1"
+usage: publish SBOM attestation
+description: |-
+  A Tunnel plugin that publish SBOM attestation
+  Usage: tunnel attest --type PREDICATE_TYPE --predicate PREDICATE_PATH BLOB_PATH
+platforms:
+  - selector:
+      os: darwin
+      arch: amd64
+    uri: https://github.com/khulnasoft/tunnel-plugin-attest/releases/download/v0.1.1/tunnel_plugin_attest_0.1.1_macOS-64bit.tar.gz
+    bin: ./attest
+  - selector:
+      os: darwin
+      arch: arm64
+    uri: https://github.com/khulnasoft/tunnel-plugin-attest/releases/download/v0.1.1/tunnel_plugin_attest_0.1.1_macOS-ARM64.tar.gz
+    bin: ./attest
+  - selector:
+      os: linux
+      arch: amd64
+    uri: https://github.com/khulnasoft/tunnel-plugin-attest/releases/download/v0.1.1/tunnel_plugin_attest_0.1.1_Linux-64bit.tar.gz
+    bin: ./attest
+  - selector:
+      os: linux
+      arch: arm64
+    uri: https://github.com/khulnasoft/tunnel-plugin-attest/releases/download/v0.1.1/tunnel_plugin_attest_0.1.1_Linux-ARM64.tar.gz
+    bin: ./attest

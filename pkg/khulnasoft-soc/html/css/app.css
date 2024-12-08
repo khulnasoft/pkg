@@ -1,0 +1,419 @@
+/*
+  Copyright 2019 Jason Ertel (jertel). All rights reserved.
+  Copyright 2020-2023 Security Onion Solutions, LLC. All rights reserved.
+
+  This program is distributed under the terms of version 2 of the
+  GNU General Public License.  See LICENSE for further details.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*/
+
+/* Vuetify theme overrides */
+.v-application {
+  background-color: var(--v-background-base) !important;
+}
+
+.v-app-bar {
+  background-color: var(--v-nav_background-base) !important;
+}
+
+.v-app-bar .v-icon {
+  color: var(--v-nav-base) !important;
+}
+
+.v-navigation-drawer {
+  background-color: var(--v-drawer_background-base) !important;
+}
+
+.v-footer {
+  background-color: var(--v-nav_background-base) !important;
+  color: var(--v-nav-base) !important;
+}
+
+.v-footer a {
+  text-decoration: none;
+  color: var(--v-primary-lighten1) !important;
+}
+
+.v-icon {
+  font-size: 18px !important;
+}
+
+.v-list-item__action, .v-list-item__icon:first-child {
+  margin-right: 10px !important;
+}
+
+.v-navigation-drawer .v-list-group__header__append-icon {
+  display: none;
+}
+
+.v-list-group__items .v-list-item {
+  margin-left: 20px !important;
+}
+
+.v-list-item__title {
+  font-size: 15px !important;
+  min-width: 7ch;
+}
+
+.v-chip .v-avatar {
+  margin-right: 6px;
+}
+
+.contrast-bg {
+  background-color: var(--v-drawer_background-base) !important;
+}
+
+.v-otp-input {
+  max-width: 300px;
+}
+
+/* animations */
+.waggle {
+  animation-name: waggle;
+  animation-timing-function: ease-out;
+  animation-delay: 0s;
+  animation-duration: 1s;
+}
+
+@keyframes waggle {
+  0% {
+    transform: none;
+  }
+  50% {
+    transform: rotateZ(-20deg) scale(1.2);
+  }
+  60% {
+    transform: rotateZ(25deg) scale(1.2);
+  }
+  67.5% {
+    transform: rotateZ(-15deg) scale(1.2);
+  }
+  75% {
+    transform: rotateZ(15deg) scale(1.2);
+  }
+  82.5% {
+    transform: rotateZ(-12deg) scale(1.2);
+  }
+  85% {
+    transform: rotateZ(0) scale(1.2);
+  }
+  100% {
+    transform: rotateZ(0) scale(1);
+  }
+}
+
+.theme--dark.v-data-table tr:nth-of-type(even) {
+  background-color: rgba(45, 45, 45, 0.25);
+ }
+
+ .theme--light.v-data-table tr:nth-of-type(even) {
+  background-color: rgba(230, 230, 230, 0.25);
+ }
+
+.v-list-item__icon.v-list-group__header__append-icon .theme--light{
+  color: white !important;
+}
+
+.show-all {
+  padding: 10px;
+  border-top: 2px dotted;
+  border-bottom: 2px dotted;
+}
+
+/* Sensoroni-specific element styles */
+.hardwrap {
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  word-break: break-all;
+  overflow-x: hidden;
+}
+
+.semi-transparent {
+  opacity: 0.5;
+}
+
+.expansion {
+  padding-left: 0px;
+  vertical-align: top;
+  overflow-x: hidden;
+}
+
+th.sortable {
+  white-space: nowrap;
+}
+
+th.sortable>i {
+  margin-left: 5px;
+}
+
+a#title, a#title:visited, a#title:active, a#title:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+.src {
+  border-left: 3px solid var(--v-info-base);
+  font-weight: bold;
+}
+
+.dst {
+  border-left: 3px solid var(--v-error-base);
+  font-weight: bold;
+}
+
+.v-data-footer {
+  min-width: 32em;
+}
+
+.filter.label {
+  display: inline-block;
+  padding-right: 10px;
+  width: 45%;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.filter.value {
+  text-align: left;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.case.summary {
+  overflow-x: hidden;
+  white-space: nowrap;
+  opacity: 60%;
+  font-size: 75%;
+}
+
+.case.blocked {
+  display: block;
+  width: auto !important;
+  min-width: auto !important;
+}
+
+.theme--light.v-application .case.tabular-row {
+  border-bottom: 1px dotted rgba(0,0,0,.05);
+}
+
+.theme--dark.v-application .case.tabular-row {
+  border-bottom: 1px dotted hsla(0,0%,100%,.05);
+}
+
+.case.tabular-label {
+  word-wrap: break-word;
+  font-weight: bold;
+}
+
+.case.label {
+  display: inline-block;
+  width: 15%;
+  min-width: 6.0em;
+  padding-right: 10px;
+  text-align: right;
+  font-weight: bold;
+  word-wrap: break-word;
+}
+
+.case.value {
+  text-align: left;
+  word-wrap: break-word;
+}
+
+.case.raw {
+  overflow-x: hidden;
+}
+
+.case.detail-field {
+  border-radius: .25em;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.no-underline {
+  text-decoration: none;
+}
+
+.clicktoedit:hover {
+  cursor: pointer;
+  color: var(--v-primary-lighten1) !important;
+}
+
+td.associated {
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+}
+
+tr.expandable:hover {
+  cursor: pointer;
+}
+
+td.case {
+  white-space: normal !important;
+}
+
+td {
+  white-space: nowrap;
+}
+
+.packet {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.nodeStatus {
+  min-width: 10ch;
+}
+
+.nodeStatus .v-chip__content {
+  margin: auto;
+}
+
+#clipboardBuffer {
+  width: 1px;
+  height: 1px;
+  opacity: 0%;
+}
+
+#connection-indicator {
+  color: white;
+}
+
+.comment-body {
+  width: 100%;
+}
+
+.case-table table {
+  width: 100% !important;
+  table-layout: fixed;
+}
+
+.markdown-body {
+  overflow: auto;
+  white-space: revert !important;
+  position: relative;
+}
+
+.comment-body .markdown-body {
+  padding: 0.75em 1.25em;
+  border-radius: 0.25em;
+}
+
+.comment-body .markdown-body pre,
+.comment-body .markdown-body p {
+  margin: 8px 0;
+}
+
+.markdown-body table {
+  border-collapse: collapse;
+  margin: 8px 0 1px 0;
+  text-align: left;
+}
+
+.markdown-body td,
+.markdown-body th {
+  padding: 8px;
+}
+
+.markdown-body h1, 
+.markdown-body h2, 
+.markdown-body h3,
+.markdown-body h4, 
+.markdown-body h5, 
+.markdown-body h6 {
+  margin: 8px 0 8px 0;
+}
+ 
+.theme--dark.v-application .markdown-body td,
+.theme--dark.v-application  .markdown-body th {
+  border: 1px solid hsla(0,0%,100%,.1);
+}
+
+.theme--light.v-application .markdown-body td,
+.theme--light.v-application  .markdown-body th {
+  border: 1px solid rgba(0,0,0,.2);
+}
+
+.theme--dark.v-application .markdown-body tr:nth-child(even) {
+  background-color: hsla(0,0%,100%,.05);
+}
+
+.theme--light.v-application .markdown-body tr:nth-child(even) {
+  background-color: rgba(0,0,0,.05);
+}
+
+.markdown-body th {
+  background-color: rgba(0,0,0,.1);
+}
+
+/* motd background is darker, so some markdown table colors need to be different */
+.theme--dark.v-application #motd.markdown-body th {
+  background-color: rgba(0,0,0,.25);
+}
+
+.theme--light.v-application  #motd.markdown-body th {
+  background-color: rgba(0,0,0,.1);
+}
+
+
+.theme--dark.v-application .comment-body .markdown-body {
+  background-color: rgba(0,0,0,.2);
+}
+
+.theme--light.v-application .comment-body .markdown-body {
+  background-color: rgba(0,0,0,.03);
+}
+
+.markdown-body pre {
+  overflow-x: auto;
+  padding: 0.5em 0.7em !important;
+}
+
+.v-application .markdown-body pre code {
+  display: block;
+  background-color: revert !important;
+  padding: 0 !important;
+}
+
+.theme--light.v-application .markdown-body pre {
+  background-color: rgba(0,0,0,.05);
+  border-radius: 0.25em;
+}
+
+.theme--dark.v-application .markdown-body pre {
+  background-color: hsla(0,0%,100%,.1);
+  border-radius: 0.25em;
+}
+
+.case.avatar-font {
+  font-size: 11px;
+}
+
+.case.markdown-icon{
+  text-decoration: none;
+}
+
+.case.markdown-icon i {
+  color: var(--v-secondary-lighten3);
+}
+
+.case.markdown-icon:hover i {
+  color: var(--v-primary-base);
+}
+
+.maximized {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: calc(100vh - 100px);
+  background-color: var(--v-background-base);
+  z-index: 1;
+}
+
+.maximized-bg {
+  overflow: hidden;
+}
